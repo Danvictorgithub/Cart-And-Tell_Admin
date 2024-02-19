@@ -107,12 +107,12 @@ const filteredMerchants = computed(() => {
           <div>
             <nav>
               <div class="flex flex-col sm:flex-row font-bold">
-                <NuxtLink
+                <!-- <NuxtLink
                   to="/payments"
                   class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"
                 >
                   OCBC Payments
-                </NuxtLink>
+                </NuxtLink> -->
                 <NuxtLink
                   to="/payments/qrPayments"
                   class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"
