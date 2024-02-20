@@ -55,7 +55,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Merchants</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="products">
+      <NuxtLink to="/products">
         <div class="flex justify-start items-start gap-4 py-5 px-12">
           <span class="material-symbols-outlined font-black text-3xl"
             >inventory_2</span
@@ -63,7 +63,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Products</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="unverifiedMerchants">
+      <NuxtLink to="/unverifiedMerchants">
         <div class="flex justify-start items-start gap-4 py-5 px-12">
           <span class="material-symbols-outlined font-black text-3xl"
             >person_apron</span
@@ -71,7 +71,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Pending Merchant</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="verifiedMerchants">
+      <NuxtLink to="/verifiedMerchants">
         <div class="flex justify-start items-start gap-4 py-5 px-12">
           <span class="material-symbols-outlined font-black text-3xl"
             >person_check</span
@@ -87,7 +87,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Payments</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="archives">
+      <NuxtLink to="/archives">
         <div class="flex justify-start items-start gap-4 py-5 px-12">
           <span class="material-symbols-outlined font-black text-3xl"
             >delete</span
@@ -95,7 +95,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Archives</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="websiteSettings">
+      <NuxtLink to="/websiteSettings">
         <div
           class="flex justify-start items-start gap-4 py-5 px-12 absolute bottom-16"
         >
