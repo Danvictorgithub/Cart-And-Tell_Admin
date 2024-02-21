@@ -84,6 +84,34 @@ async function Delete() {
   refresh();
   isLoading.value = false;
 }
+async function UnArchive(e: any) {
+  selectedId.value = e.target!.id;
+  isLoading.value = true;
+  let isError = false;
+  const token = useCookie("token");
+  const formData = new FormData();
+  formData.append("isVerified", "false");
+  formData.append("status", "Pending");
+  const data = await $fetch<{ message: string }>(
+    `${API}/merchant/${selectedId.value}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: formData,
+    }
+  ).catch((error) => {
+    alert(error.data.message);
+    isError = true;
+    return;
+  });
+  if (!isError) {
+    closeModal(new Event("click"));
+  }
+  refresh();
+  isLoading.value = false;
+}
 onBeforeRouteLeave((to, from) => {
   if (pending) {
     controller.abort();
@@ -352,6 +380,15 @@ const filteredMerchant = computed(() => {
                   <p>{{ merchant.isVerified }}</p>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    @click="UnArchive"
+                    value="delete"
+                    :id="merchant.id.toString()"
+                    type="button"
+                    class="text-blue-600 hover:text-indigo-900 px-4 py-2 border-2 rounded-full"
+                  >
+                    UnArchive
+                  </button>
                   <button
                     @click="openModal"
                     value="delete"

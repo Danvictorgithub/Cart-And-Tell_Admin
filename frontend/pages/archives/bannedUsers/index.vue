@@ -148,11 +148,12 @@ async function Delete() {
   }
   refresh();
 }
-async function Archive() {
+async function UnArchive(e: any) {
+  selectedId.value = parseInt(e.target.id);
   isLoading.value = true;
   let isError = false;
   const formDataUpdate: { [any: string]: string | boolean } = {
-    status: "Removed",
+    status: "Active",
   };
   const token = useCookie("token");
   const data = await $fetch<{ message: string }>(
@@ -481,6 +482,14 @@ const filteredUsers = computed(() => {
                   <p>{{ user.merchant !== null }}</p>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    @click="UnArchive"
+                    :id="user.id.toString()"
+                    type="button"
+                    class="mr-2 text-indigo-600 hover:text-indigo-900"
+                  >
+                    UnBan
+                  </button>
                   <button
                     @click="openModal"
                     value="edit"

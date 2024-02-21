@@ -148,6 +148,36 @@ async function Delete() {
   }
   refresh();
 }
+async function UnArchive(e: any) {
+  selectedId.value = parseInt(e.target.id);
+  isLoading.value = true;
+  let isError = false;
+  const formDataUpdate: { [any: string]: string | boolean } = {
+    status: "Active",
+  };
+  const token = useCookie("token");
+  const data = await $fetch<{ message: string }>(
+    `${API}/user/${selectedId.value}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: formDataUpdate,
+    }
+  ).catch((error) => {
+    alert(error.data.message);
+    isError = true;
+    refresh();
+    return;
+  });
+  if (!isError) {
+    closeModal(new Event("click"));
+    refresh();
+  }
+  refresh();
+  isLoading.value = false;
+}
 // async function Archive() {
 //   isLoading.value = true;
 //   let isError = false;
@@ -482,6 +512,14 @@ const filteredUsers = computed(() => {
                   <p>{{ user.merchant !== null }}</p>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    @click="UnArchive"
+                    :id="user.id.toString()"
+                    type="button"
+                    class="mr-2 text-indigo-600 hover:text-indigo-900"
+                  >
+                    UnBan
+                  </button>
                   <button
                     @click="openModal"
                     value="edit"
