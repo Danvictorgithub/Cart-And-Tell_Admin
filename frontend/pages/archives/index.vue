@@ -5,7 +5,7 @@ const path = useRoute().path;
 const controller = new AbortController();
 const signal = controller.signal;
 const { data: users, pending: pending1 } = await useFetch(
-  `${API}/user?status=Removed`,
+  `${API}/user/count/?status=Removed`,
   {
     signal,
     lazy: true,
@@ -16,7 +16,7 @@ const { data: users, pending: pending1 } = await useFetch(
   }
 );
 const { data: banned, pending: pending2 } = await useFetch(
-  `${API}/user?status=Banned`,
+  `${API}/user/count/?status=Banned`,
   {
     signal,
     lazy: true,
@@ -27,7 +27,7 @@ const { data: banned, pending: pending2 } = await useFetch(
   }
 );
 const { data: merchants, pending: pending3 } = await useFetch(
-  `${API}/merchant?status=Removed`,
+  `${API}/merchant/count?status=Removed`,
   {
     signal,
     lazy: true,
@@ -72,14 +72,14 @@ onBeforeRouteLeave((to, from) => {
               class="flex flex-col justify-center items-center shadow-sm p-4 rounded-md w-full"
             >
               <h1 class="text-2xl font-bold">Total Archived Users</h1>
-              <h2 class="text-2xl font-bold">{{ users ? users.length : 0 }}</h2>
+              <h2 class="text-2xl font-bold">{{ users ? users : 0 }}</h2>
             </div>
             <div
               class="flex flex-col justify-center items-center shadow-sm p-4 rounded-md w-full"
             >
               <h1 class="text-2xl font-bold">Total Banned Users</h1>
               <h2 class="text-2xl font-bold">
-                {{ banned ? banned.length : 0 }}
+                {{ banned ? banned : 0 }}
               </h2>
             </div>
             <div
@@ -87,7 +87,7 @@ onBeforeRouteLeave((to, from) => {
             >
               <h1 class="text-2xl font-bold">Total Archived Merchants</h1>
               <h2 class="text-2xl font-bold">
-                {{ merchants ? merchants.length : 0 }}
+                {{ merchants ? merchants : 0 }}
               </h2>
             </div>
           </div>

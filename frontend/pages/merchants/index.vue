@@ -285,7 +285,7 @@ const activeMerchants = computed(() =>
 
 const searchTerm = ref("");
 const filteredMerchant = computed(() => {
-  return activeMerchants!.value!.filter((item) =>
+  return activeMerchants!.value!.filter((item: any) =>
     item.name.toLowerCase().includes(searchTerm.value.toLowerCase())
   );
 });

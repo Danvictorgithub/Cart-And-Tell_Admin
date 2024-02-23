@@ -38,7 +38,7 @@ const {
       products: [any];
     }
   ]
->(`${API}/merchant/verified`, {
+>(`${API}/merchant?status=Approved`, {
   signal,
   lazy: true,
   headers: {
