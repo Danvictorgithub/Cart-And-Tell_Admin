@@ -49,7 +49,7 @@ function logout() {
           <h2 class="font-bold text-2xl">Overview</h2>
         </div>
       </NuxtLink>
-      <NuxtLink to="/websiteSettings/bankDetails">
+      <NuxtLink to="/websiteSettings/bankDetails/qrCode">
         <div class="link flex justify-start items-start gap-4 py-4 px-12">
           <span class="material-symbols-outlined font-black text-3xl"
             >account_balance</span

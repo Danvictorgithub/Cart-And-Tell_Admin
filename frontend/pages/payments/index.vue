@@ -85,7 +85,7 @@ const sortToPending = computed(() => {
 
 const searchTerm = ref("");
 const filteredMerchants = computed(() => {
-  return sortToPending!.value!.filter((item) =>
+  return sortToPending!.value!.filter((item: any) =>
     item.merchant.name.toLowerCase().includes(searchTerm.value.toLowerCase())
   );
 });

@@ -34,7 +34,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
   // specify the types of data to be received.
   dataTypes: ["image/png", "image/jpeg", "image/gif", "image/jpg"],
 });
-onChange((files) => {
+onChange((files: any) => {
   form.qrCodeImage = files![0];
   previewImage.value = URL.createObjectURL(form.qrCodeImage);
 });
@@ -103,12 +103,12 @@ async function deleteQR(e: Event) {
             <div>
               <nav>
                 <div class="flex flex-col sm:flex-row font-bold">
-                  <NuxtLink
+                  <!-- <NuxtLink
                     to="/websiteSettings/bankDetails"
                     class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"
                   >
                     Bank Details
-                  </NuxtLink>
+                  </NuxtLink> -->
                   <NuxtLink
                     to="/websiteSettings/bankDetails/qrCode"
                     class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"

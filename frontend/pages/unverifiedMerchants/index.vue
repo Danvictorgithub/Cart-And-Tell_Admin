@@ -589,6 +589,7 @@ const filteredMerchants = computed(() => {
                 </td>
               </tr>
               <tr
+                v-else
                 v-for="merchant in searchTerm ? filteredMerchants : merchants"
                 :key="merchant.id"
               >

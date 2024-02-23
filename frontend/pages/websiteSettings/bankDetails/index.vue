@@ -107,12 +107,12 @@ function editMode() {
             <div>
               <nav>
                 <div class="flex flex-col sm:flex-row font-bold">
-                  <NuxtLink
+                  <!-- <NuxtLink
                     to="/websiteSettings/bankDetails"
                     class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"
                   >
                     Bank Details
-                  </NuxtLink>
+                  </NuxtLink> -->
                   <NuxtLink
                     to="/websiteSettings/bankDetails/qrCode"
                     class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none"
