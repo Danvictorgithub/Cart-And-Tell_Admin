@@ -25,34 +25,38 @@ async function handler() {
   isLoading.value = true;
   errorMessage.value = "";
   const result: loginFetchData = await login(formData.email, formData.password);
-  if (result.access_token) {
-    const token = useCookie("token");
-    token.value = result.access_token;
-    const userObj = useUserObj();
-    const response: any = await $fetch<{
-      email: string;
-      id: number;
-      cartCount: number;
-    }>(`${API}/auth/validateAsAdmin`, {
-      headers: {
-        Authorization: `Bearer ${token.value}`,
-        ContentType: "application/json",
-      },
-      method: "GET",
-    }).catch((error) => {
-      errorMessage.value = "User not Authorized";
-    });
-    if (response) {
+  if (result) {
+    if (result.access_token) {
+      const token = useCookie("token");
+      token.value = result.access_token;
       const userObj = useUserObj();
-      userObj.value = { ...response, loggedIn: true };
-      await navigateTo("/");
+      const response: any = await $fetch<{
+        email: string;
+        id: number;
+        cartCount: number;
+      }>(`${API}/auth/validateAsAdmin`, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+          ContentType: "application/json",
+        },
+        method: "GET",
+      }).catch((error) => {
+        errorMessage.value = "User not Authorized";
+      });
+      if (response) {
+        const userObj = useUserObj();
+        userObj.value = { ...response, loggedIn: true };
+        await navigateTo("/");
+      }
+    } else {
+      if (result.message === "Unauthorized") {
+        errorMessage.value = "Provide Email and Password";
+      } else {
+        errorMessage.value = result.message;
+      }
     }
   } else {
-    if (result.message === "Unauthorized") {
-      errorMessage.value = "Provide Email and Password";
-    } else {
-      errorMessage.value = result.message;
-    }
+    errorMessage.value = "Server not responding, please try again later";
   }
   isLoading.value = false;
 }
