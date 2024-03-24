@@ -5,6 +5,7 @@ const path = useRoute().path;
 const controller = new AbortController();
 const signal = controller.signal;
 const { data: googleAnalyticsData } = await useFetch<{
+  rowCount: number;
   data: {
     metricHeaders: [{ name: string; type: string }];
     rows: Array<{ metricValues: Array<{ value: string }> }>;
@@ -139,7 +140,7 @@ onBeforeRouteLeave((to, from) => {
                     <p class="text-sm uppercase font-semibold">Users</p>
                     <p class="text-lg font-bold">
                       {{
-                        googleAnalyticsData
+                        googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData.data.rows[0].metricValues[0]
                               .value
                           : NaN
@@ -152,7 +153,7 @@ onBeforeRouteLeave((to, from) => {
                     <p class="text-sm uppercase font-semibold">New Users</p>
                     <p class="text-lg font-bold">
                       {{
-                        googleAnalyticsData
+                        googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData?.data.rows[0].metricValues[1]
                               .value
                           : NaN
@@ -165,7 +166,7 @@ onBeforeRouteLeave((to, from) => {
                     <p class="text-sm uppercase font-semibold">Pageviews</p>
                     <p class="text-lg font-bold">
                       {{
-                        googleAnalyticsData
+                        googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData?.data.rows[0].metricValues[2]
                               .value
                           : NaN
@@ -178,7 +179,7 @@ onBeforeRouteLeave((to, from) => {
                     <p class="text-sm uppercase font-semibold">Bounce Rate</p>
                     <p class="text-lg font-bold">
                       {{
-                        googleAnalyticsData
+                        googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? `${(
                               parseFloat(
                                 googleAnalyticsData?.data.rows[0]
