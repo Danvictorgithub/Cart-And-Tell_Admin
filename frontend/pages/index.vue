@@ -143,7 +143,7 @@ onBeforeRouteLeave((to, from) => {
                         googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData.data.rows[0].metricValues[0]
                               .value
-                          : NaN
+                          : 0
                       }}
                     </p>
                   </div>
@@ -156,7 +156,7 @@ onBeforeRouteLeave((to, from) => {
                         googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData?.data.rows[0].metricValues[1]
                               .value
-                          : NaN
+                          : 0
                       }}
                     </p>
                   </div>
@@ -169,7 +169,7 @@ onBeforeRouteLeave((to, from) => {
                         googleAnalyticsData && googleAnalyticsData.rowCount > 0
                           ? googleAnalyticsData?.data.rows[0].metricValues[2]
                               .value
-                          : NaN
+                          : 0
                       }}
                     </p>
                   </div>
@@ -186,7 +186,7 @@ onBeforeRouteLeave((to, from) => {
                                   .metricValues[3].value
                               ) * 100
                             ).toPrecision(2)} %`
-                          : NaN
+                          : 0
                       }}
                     </p>
                   </div>
