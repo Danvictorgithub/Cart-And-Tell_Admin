@@ -518,7 +518,7 @@ const filteredUsers = computed(() => {
                     type="button"
                     class="mr-2 text-indigo-600 hover:text-indigo-900"
                   >
-                    UnBan
+                    UnArchive
                   </button>
                   <button
                     @click="openModal"
